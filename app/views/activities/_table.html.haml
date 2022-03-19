@@ -1,0 +1,20 @@
+%table.table.table-hover.table-responsive--broken
+  - unless local_assigns[:no_header] == true
+    %thead
+      %tr
+        %th.text-truncate
+          = t('comment')
+        - unless local_assigns[:card] == true
+          %th.text-truncate
+            .float-right
+              = t('created')
+        %th.text-truncate
+          .float-right
+            = t('published')
+  %tbody
+    - @activities.each_with_index do |activity, i|
+      = render partial: 'activities/row', locals: { activity: activity, card: local_assigns[:card] }
+      - if (i == @activities.count - 1) || (i < @activities.count - 1 && activity.published_at.day != @activities[i + 1].published_at.day)
+        = render partial: 'activities/row_divider', locals: { activity: activity }
+.no-underline
+  = paginate @activities

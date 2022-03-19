@@ -1,0 +1,1 @@
+json.array! @user_strategies, partial: 'user_strategies/user_strategy', as: :user_strategy

@@ -1,0 +1,27 @@
+.modal.fade{ data: { id: 'id' }, tabindex: '-1', role: 'dialog', aria: { labelledby: 'confirm-modal-label', hidden: 'true' } }
+  .modal-dialog{ role: 'document' }
+    .modal-content
+      = form_for @user_strategy, url: user_strategy_activities_path(@user_strategy), remote: true, method: :delete do |f|
+        .modal-header
+          %h5#confirm-modal-label.modal-title
+            = t('modal.confirm')
+          %button.close{ type: 'button', data: { aria: { label: "#{t('modal.close')}" }, dismiss: 'modal' } }
+            %span{ aria: { hidden: 'true' } }
+              &times;
+        .modal-body
+          %p
+            = t('modal.choose_which_activities_to_delete')
+          .btn-group.btn-group-toggle{ data: { toggle: 'buttons' } }
+            = f.label :activities_white, class: 'btn btn-outline-primary active' do
+              = t('white')
+              = f.radio_button :activities, :default, checked: true
+            = f.label :activities_yellow, class: 'btn btn-outline-primary' do
+              = t('yellow')
+              = f.radio_button :activities, :warning
+            = f.label :activities_all, class: 'btn btn-outline-primary' do
+              = t('all')
+              = f.radio_button :activities, :all
+        .modal-footer
+          %button.btn.btn-secondary{ type: 'button', data: { dismiss: 'modal' } }
+            = t('modal.cancel')
+          = f.submit t('modal.ok'), class: 'btn btn-primary'

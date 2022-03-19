@@ -1,0 +1,35 @@
+= form_for @account, html: { role: 'form' } do |f|
+  - if @account.new_record?
+    .form-group
+      = f.text_field :trade_account_id, autofocus: true, class: 'form-control', placeholder: t('account_id'), value: Rails.env.backtest? ? OandaApiV20Backtest::Account::ACCOUNT_ID : nil
+    .form-group
+      = f.password_field :access_token, class: 'form-control', placeholder: t('access_token')
+    .form-group
+      .btn-group.btn-group-toggle{ data: { toggle: 'buttons' } }
+        = f.label :practice, class: 'btn btn-outline-primary active' do
+          = f.radio_button :practice, '1', checked: true
+          = t('practice')
+        = f.label :practice, class: 'btn btn-outline-primary' do
+          = f.radio_button :practice, '0'
+          = t('live')
+    .form-group
+      = f.number_field :max_concurrent_trades, class: 'form-control', placeholder: t('max_concurrent_trades'), min: 1
+      %small.form-text.text-muted
+        = t('descriptions.max_concurrent_trades')
+    .form-group
+      = f.submit t('add'), class: 'btn btn-outline-primary'
+  - else
+    .form-group
+      = f.text_field :trade_account_id, disabled: true, class: 'form-control', placeholder: t('account_id')
+    .form-group{ title: t('alias') }
+      = f.text_field :alias, autofocus: true, class: 'form-control', placeholder: t('alias')
+    .form-group
+      = f.password_field :access_token, class: 'form-control', placeholder: t('access_token')
+      %small.form-text.text-muted
+        = t('descriptions.access_token_update')
+    .form-group
+      = f.number_field :max_concurrent_trades, class: 'form-control', placeholder: t('max_concurrent_trades'), min: 1
+      %small.form-text.text-muted
+        = t('descriptions.max_concurrent_trades')
+    .form-group
+      = f.submit t('update'), class: 'btn btn-outline-primary'

@@ -1,0 +1,21 @@
+.row
+  .col-sm-12
+    %h2.display-3.mb-3.text-truncate
+      = t('account')
+%dl.row
+  %dt.col-sm-3.offset-sm-3
+    = t('account_id')
+  %dd.col-sm-6
+    = @account.trade_account_id
+  %dt.col-sm-3.offset-sm-3
+    = t('alias')
+  %dd.col-sm-6
+    = @account.alias
+  %dt.col-sm-3.offset-sm-3
+    = t('current')
+  %dd.col-sm-6
+    = @account.current
+  %dt.col-sm-3.offset-sm-3
+    = t('practice')
+  %dd.col-sm-6
+    = @account.practice

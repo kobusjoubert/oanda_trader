@@ -1,0 +1,17 @@
+.col-12.col-sm-6.col-lg-4.col-xl-3.px-0.px-sm-3
+  .card.mb-3{ id: "strategy-#{strategy.id}", class: "border-#{strategy_active_class(strategy)}" }
+    .card-body.pb-0
+      %h4.display-4.card-title.text-truncate
+        = strategy.name
+      %p.card-text
+        / = render partial: 'strategy_hours', locals: { strategy: strategy }
+        / %br
+        = render partial: 'strategy_tags', locals: { strategy: strategy }
+      .activities-block.text-truncate{ id: "strategy-#{strategy.id}-activities" }
+        = render partial: 'card_activities', locals: { strategy: strategy, user_strategy: user_strategy }
+    .card-footer
+      %div{ id: "strategy-#{strategy.id}-buttons" }
+        %div.d-inline{ id: "strategy-#{strategy.id}-buttons-worker" }
+          = render partial: 'buttons_worker', locals: { strategy: strategy, user_strategy: user_strategy }
+        %div.d-inline{ id: "strategy-#{strategy.id}-buttons-config" }
+          = render partial: 'buttons_config', locals: { strategy: strategy, user_strategy: user_strategy }

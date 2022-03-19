@@ -1,0 +1,20 @@
+development:
+  adapter: redis
+  url: redis://localhost:6379
+
+backtest:
+  adapter: redis
+  url: redis://localhost:6379
+
+test:
+  adapter: async
+
+production:
+  adapter: redis
+  url: <%= ENV['REDIS_URL'] %>
+  channel_prefix: oanda_trader_production
+
+staging:
+  adapter: redis
+  url: <%= ENV['REDIS_URL'] %>
+  channel_prefix: oanda_trader_staging

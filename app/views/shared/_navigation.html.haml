@@ -1,0 +1,52 @@
+- gravatar_url = gravatar_image_url(current_user.email) if current_user
+- gravatar_default_url = '1aedb8d9dc4751e229a335e371db8058'
+%header.navbar.navbar-full.fixed-top.navbar-expand.navbar-light.bg-white.border-b{ class: live_or_practice, role: 'banner' }
+  = link_to brand_icon_path, class: "navbar-brand" do
+    .text-lowercase
+      .text-primary
+        %span.font-db.font-weight-light
+          1
+  %nav.nav.navbar-nav.ml-auto
+    - unless user_signed_in?
+      .form-inline
+        = link_to t('sign_in'), new_user_session_path, class: 'nav-item nav-link- btn btn-outline-primary'
+    - if user_signed_in?
+      .form-inline
+        .nav-item.dropdown#user-dropdown
+          = link_to '#', class: 'nav-link dropdown-toggle pr-0', role: 'button', aria: { haspopup: 'true', expanded: 'false' }, data: { toggle: 'dropdown' } do
+            = current_user
+            - if gravatar_url.include?(gravatar_default_url)
+              .fa.fa-user-circle-o.fa-2x{ class: "text-#{account_practice_or_live_class(current_user.current_account)}" }
+            - else
+              = gravatar_image_tag(current_user.email, class: "rounded-circle border border-2 border-#{account_practice_or_live_class(current_user.current_account)}")
+          .dropdown-menu.dropdown-menu-right.mt-4
+            - if current_user.current_account
+              .dropdown-item.py-3.px-5
+                .lead
+                  = current_user.current_account.alias
+                  .text-muted#current-balance
+                    = "$ #{current_user.current_account.balance}"
+                .text-muted#current-balance
+                  = "#{current_user.current_account.trade_account_id}"
+                .lead
+                  = account_practice_or_live_icon(current_user.current_account)
+                  = account_max_concurrent_trades_icon(current_user.current_account)
+                .mt-2
+                  .progress#margin-clouseout-percent
+                    = account_margin_clouseout_percent_icon(current_user.current_account)
+            = link_to charts_path, class: 'dropdown-item py-3 px-5' do
+              .fa.fa-object-group.pr-4
+              = t('charts')
+            = link_to strategies_path, class: 'dropdown-item py-3 px-5' do
+              .fa.fa-area-chart.pr-3
+              = t('strategies')
+            = link_to accounts_path, class: 'dropdown-item py-3 px-5' do
+              .fa.fa-group.pr-3
+              = t('accounts')
+            = link_to edit_user_registration_path, class: 'dropdown-item py-3 px-5' do
+              .fa.fa-user.pr-3
+              = t('profile')
+            .dropdown-divider
+            = link_to destroy_user_session_path, class: 'dropdown-item py-3 px-5', method: :delete do
+              .fa.fa-circle-o-notch.pr-1
+              = t('sign_out')

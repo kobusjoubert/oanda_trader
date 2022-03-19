@@ -1,0 +1,48 @@
+- content_for(:title, "#{@user_strategy.strategy.worker_name} #{@user_strategy.strategy.instrument}")
+.row
+  .col-sm-12
+    .pull-right
+      - if params[:show_charts] == 'true'
+        - if params[:all_charts]
+          = link_to strategy_user_strategy_path(@user_strategy.strategy.id, @user_strategy.id, show_charts: true), class: 'btn btn-md btn-primary', title: t('back') do
+            .fa.fa-bar-chart
+        - else
+          = link_to strategy_user_strategy_path(@user_strategy.strategy.id, @user_strategy.id, show_charts: true, all_charts: true), class: 'btn btn-md btn-outline-primary', title: t('all_charts') do
+            .fa.fa-bar-chart
+      - if params[:show_charts] == 'true'
+        = link_to strategy_user_strategy_path(@user_strategy.strategy.id, @user_strategy.id, show_charts: false), class: 'btn btn-md btn-outline-primary', title: t('hide_charts') do
+          .fa.fa-eye
+      - else
+        = link_to strategy_user_strategy_path(@user_strategy.strategy.id, @user_strategy.id, show_charts: true), class: 'btn btn-md btn-primary', title: t('show_charts') do
+          .fa.fa-eye-slash
+    %h2.display-3.text-truncate
+      = @user_strategy.name
+    %p.mb-3
+      / = render partial: 'strategies/strategy_hours', locals: { strategy: @user_strategy.strategy }
+      / %br
+      = render partial: 'strategies/strategy_tags', locals: { strategy: @user_strategy.strategy }
+- if params[:show_charts] == 'true'
+  - if params[:all_charts]
+    .row
+      .col-sm-12
+        - for year in 2010..Time.now.year
+          %h2.display-3
+            = year
+          .mb-4
+            = column_chart(column_chart_data(@user_strategy, year), colors: ['#5cb85c', '#d9534f'], stacked: true, legend: false)
+        %hr
+  .row
+    .col-sm-12
+      %h2.display-3
+        = t('year')
+      .mb-4
+        = column_chart(column_chart_data(@user_strategy, 'year'), colors: ['#5cb85c', '#d9534f'], stacked: true, legend: false)
+      %h2.display-3
+        = t('week')
+      .mb-4
+        = column_chart(column_chart_data(@user_strategy, 'week'), colors: ['#5cb85c', '#d9534f'], stacked: true, legend: false)
+%div{ id: "strategy-#{@user_strategy.strategy.id}" }
+  .row
+    .col-sm-12
+      .user-strategy-activities-table
+        = render partial: 'activities/table', locals: { card: false, no_header: false }

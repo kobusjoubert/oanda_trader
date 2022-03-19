@@ -1,0 +1,4 @@
+.row
+  - @strategies.each do |strategy|
+    - user_strategy = current_user.current_account.user_strategies.where(strategy: strategy).last
+    = render partial: 'card', locals: { strategy: strategy, user_strategy: user_strategy }

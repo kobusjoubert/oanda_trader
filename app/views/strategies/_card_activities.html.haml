@@ -1,0 +1,5 @@
+- if user_strategy
+  - @activities = user_strategy.activities.order(id: :desc).page(params[:page]).per(6)
+  .activities-table.table-sm
+    = link_to strategy_user_strategy_path(strategy.id, user_strategy.id), data: { turbolinks: false }, class: 'text-muted' do
+      = render partial: 'activities/table', locals: { card: true, no_header: true }

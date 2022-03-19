@@ -1,0 +1,19 @@
+!!!
+%html{ lang: 'en' }
+  %head
+    %meta{ charset: 'utf-8' }
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1' }
+    %meta{ content: 'ie=edge', http: { equiv: 'x-ua-compatible' } }
+    %title= content_for?(:title) ? "#{yield(:title)} - #{t('oanda_trader')}" : t('oanda_trader')
+    %meta{ content: content_for?(:description) ? yield(:description) : t('oanda_trader'), name: 'description' }
+    %meta{ content: 'Kobus Joubert', name: 'author' }
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': false
+    = javascript_include_tag 'application', 'data-turbolinks-track': false
+    = action_cable_meta_tag
+    = csrf_meta_tags
+    = yield(:head)
+  %body{ class: "#{body_classes} fullscreen" }
+    .container-fluid
+      .row
+        .col-12.px-0
+          = yield

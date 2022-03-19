@@ -1,0 +1,29 @@
+/ - flash[:info] = 'Info message'
+!!!
+%html{ lang: 'en' }
+  %head
+    %meta{ charset: 'utf-8' }
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1' }
+    %meta{ content: 'ie=edge', http: { equiv: 'x-ua-compatible' } }
+    %title= content_for?(:title) ? "#{yield(:title)} - #{t('dreambot')}" : t('dreambot')
+    %meta{ content: content_for?(:description) ? yield(:description) : t('dreambot'), name: 'description' }
+    %meta{ content: 'Kobus Joubert', name: 'author' }
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = action_cable_meta_tag
+    = csrf_meta_tags
+    = yield(:head)
+  %body{ class: "#{body_classes}", data: { spy: 'scroll', target: '.navbar', offset: 20 } }
+    = render 'shared/navigation'
+    #modal-messages
+    .container-fluid
+      .row
+        .col-sm-12#flash-messages
+          = render 'shared/messages'
+      .row.mb-3
+        .col-sm-12#progress-bar
+      .row
+        .col-sm-12
+          = yield
+    = render 'shared/footer'
+    = render 'shared/sounds'

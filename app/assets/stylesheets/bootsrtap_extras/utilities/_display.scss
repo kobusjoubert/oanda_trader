@@ -1,0 +1,17 @@
+//
+// Display utilities
+//
+
+.d-vertical-center {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
+
+.w-auto {
+  width: auto !important;
+}
+
+.no-underline {
+  text-decoration: none;
+}

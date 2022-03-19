@@ -1,0 +1,16 @@
+.modal.fade{ data: { id: 'id' }, tabindex: '-1', role: 'dialog', aria: { labelledby: 'confirm-modal-label', hidden: 'true' } }
+  .modal-dialog{ role: 'document' }
+    .modal-content
+      .modal-header
+        %button.close{ type: 'button', data: { aria: { label: "#{t('modal.close')}" }, dismiss: 'modal' } }
+          %span{ aria: { hidden: 'true' } }
+            &times;
+        %h5#confirm-modal-label.modal-title
+          = t('modal.confirm')
+      .modal-body
+        = local_assigns[:body] || t('modal.are_you_sure')
+      .modal-footer
+        %button.btn.btn-secondary{ type: 'button', data: { dismiss: 'modal' } }
+          = t('modal.cancel')
+        %button.btn.btn-primary{ type: 'button' }
+          = t('modal.ok')

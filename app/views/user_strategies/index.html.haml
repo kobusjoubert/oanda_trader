@@ -1,0 +1,25 @@
+%h1 Listing user_strategies
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Strategy
+      %th Config
+      %th
+      %th
+      %th
+
+  %tbody
+    - @user_strategies.each do |user_strategy|
+      %tr
+        %td= user_strategy.user
+        %td= user_strategy.strategy
+        %td= user_strategy.config
+        %td= link_to 'Show', user_strategy
+        %td= link_to 'Edit', edit_user_strategy_path(user_strategy)
+        %td= link_to 'Destroy', user_strategy, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New User strategy config', new_user_strategy_path

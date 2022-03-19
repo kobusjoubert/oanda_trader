@@ -1,0 +1,4 @@
+$("#flash-messages").append("<%= escape_javascript(render partial: 'shared/messages') %>");
+$("#strategy-<%= @user_strategy.strategy.id %>-activities").html("<%= escape_javascript(render partial: 'strategies/card_activities', locals: { strategy: @user_strategy.strategy, user_strategy: @user_strategy }) %>");
+$("#strategy-<%= @user_strategy.strategy.id %>-buttons-config").html("<%= escape_javascript(render partial: 'strategies/buttons_config', locals: { strategy: @user_strategy.strategy, user_strategy: @user_strategy }) %>");
+$(".modal").modal("hide");

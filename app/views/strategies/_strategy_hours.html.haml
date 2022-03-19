@@ -1,0 +1,7 @@
+%small.d-inline-block.text-muted{ title: t('market_hours'), data: { toggle: 'tooltip', placement: 'top' } }
+  = "#{strategy.market_hours}"
+%small.d-inline-block.text-muted{ title: t('trading_hours'), data: { toggle: 'tooltip', placement: 'top' } }
+  = " (#{strategy.trading_hours})"
+- if strategy.exit_friday_at
+  %small.d-inline-block.text-muted{ title: t('exit_friday_at'), data: { toggle: 'tooltip', placement: 'top' } }
+    = " [#{strategy.exit_friday_at.to_s(:time)}]"

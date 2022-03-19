@@ -1,0 +1,150 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  access_token: "Access Token"
+  account: "Account"
+  account_id: "Account ID"
+  accounts: "Accounts"
+  active_account: "Active Account"
+  activity: "Activity"
+  activities: "Activities"
+  activities_deleted: "Activities Deleted"
+  add: "Add"
+  add_account: "Add Account"
+  alias: "Alias"
+  all: "All"
+  all_charts: "All Charts"
+  all_rights_reserved: "All rights reserved"
+  balance: "Balance"
+  balance_percentage: "Balance Percentage"
+  blue: "Blue"
+  chart_interval: "Chart Interval"
+  charts: "Charts"
+  comment: "Comment"
+  config: "Config"
+  consecutive_losses_allowed: "Consecutive Losses Allowed"
+  created: "Created"
+  current: "Current"
+  cut_off_time: "Cut Off Time"
+  db: "DB"
+  default: "Default"
+  delete: "Delete"
+  delete_activites: "Delete Activites"
+  delete_account: "Delete Account"
+  delete_logs: "Delete Logs"
+  destroy: "Destroy"
+  dreambot: "DreamBot"
+  dream_bot: "Dream Bot"
+  edit: "Edit"
+  exit_friday_at: "Exit Friday At"
+  favourite: "Favourite"
+  favourites: "Favourites"
+  favourite_strategies: "Favourite Strategies"
+  green: "Green"
+  hello: "Hello world"
+  hide_charts: "Hide Charts"
+  instrument: "Instrument"
+  instruments: "Instruments"
+  live: "Live"
+  live_account: "Live Account"
+  margin: "Margin"
+  margin_closeout_percent: "Margin Closeout Percent"
+  market_hours: "Market Hours"
+  max_concurrent_trades: "Max Concurrent Trades"
+  new: "New"
+  oanda_trader: "Oanda Trader"
+  pause: "Pause"
+  pkf: "pkf"
+  practice: "Practice"
+  practice_account: "Practice Account"
+  profile: "Profile"
+  published: "Published"
+  purple: "Purple"
+  red: "Red"
+  refresh: "Refresh"
+  resume: "Resume"
+  second: "Second"
+  seconds: "Seconds"
+  show: "Show"
+  show_charts: "Show Charts"
+  sign_in: "Sign In"
+  sign_out: "Sign Out"
+  start: "Start"
+  stop: "Stop"
+  stop_loss: "Stop Loss"
+  stop_loss_at: "Stop Loss At"
+  stop_loss_at_pips: "Stop Loss At Pips"
+  strategies: "Strategies"
+  take_profit: "Take Profit"
+  take_profit_at: "Take Profit At"
+  take_profit_at_pips: "Take Profit At Pips"
+  time: "Time"
+  trade_account_id: "Trade Account ID"
+  trade_with_account: "Trade With Account"
+  trader: "Trader"
+  trading_hours: "Trading Hours"
+  unit: "Unit"
+  units: "Units"
+  update: "Update"
+  updated: "Updated"
+  update_profile: "Update Profile"
+  week: "Week"
+  white: "White"
+  worker: "Worker"
+  worker_name: "Worker Name"
+  year: "Year"
+  yellow: "Yellow"
+  descriptions:
+    access_token_update: "Leave blank if you don't want to change your access token."
+    margin_help_block: "The percentage of your available balance to use for new orders. Takes precedence over the units field."
+    max_concurrent_trades: "Max concurrent trades allowed."
+  messages:
+    account_successfully_created: "Account was successfully created."
+    account_successfully_destroyed: "Account was successfully destroyed."
+    account_not_deleted_check_strategies: "Account was not deleted. Please stop all strategies still trading before deleting the account."
+    account_not_updated: "Account was not updated."
+    add_account: "Please add an account first."
+    config_updated: "Config successfully updated."
+    config_created: "Config successfully updated."
+    set_account_to_trade_with: "Please choose the account you would like to trade with. You can easily switch between accounts to trade with here."
+    set_strategy_config_to_trade_with: "Please confirm the settings you would like to trade with on this strategy."
+    trade_created: "Trade successfully created."
+    trade_updated: "Trade successfully updated."
+  modal:
+    are_you_sure: "Are you sure?"
+    are_you_sure_delete_activites: "Are you sure you want to delete all activities for this strategy?"
+    are_you_sure_delete_account: "Are you sure you want to delete the account with all of the user strategies and activities for this account?"
+    cancel: "Cancel"
+    choose_which_activities_to_delete: "Which activities do you want to burn?"
+    close: "Close"
+    confirm: "Confirm"
+    ok: "OK"

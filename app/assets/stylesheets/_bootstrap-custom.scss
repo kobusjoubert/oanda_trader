@@ -1,0 +1,60 @@
+/*!
+ * Bootstrap v4.0.0-beta.2 (https://getbootstrap.com)
+ * Copyright 2011-2017 The Bootstrap Authors
+ * Copyright 2011-2017 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+@import "bootstrap/functions";
+
+@import "bootsrtap_extras/functions-custom";
+@import "bootsrtap_extras/variables-bootstrap";
+
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+@import "bootstrap/root";
+@import "bootstrap/reboot";
+@import "bootstrap/type";
+@import "bootstrap/images";
+@import "bootstrap/code";
+@import "bootstrap/grid";
+@import "bootstrap/tables";
+@import "bootstrap/forms";
+@import "bootstrap/buttons";
+@import "bootstrap/transitions";
+@import "bootstrap/dropdown";
+@import "bootstrap/button-group";
+@import "bootstrap/input-group";
+//@import "bootstrap/custom-forms"; // TODO: Uncomment and delete bootsrtap_extras/custom-forms when updatging from bootstrap 4.0.0!
+@import "bootstrap/nav";
+@import "bootstrap/navbar";
+@import "bootstrap/card";
+@import "bootstrap/breadcrumb";
+@import "bootstrap/pagination";
+@import "bootstrap/badge";
+@import "bootstrap/jumbotron";
+@import "bootstrap/alert";
+@import "bootstrap/progress";
+@import "bootstrap/media";
+@import "bootstrap/list-group";
+@import "bootstrap/close";
+@import "bootstrap/modal";
+@import "bootstrap/tooltip";
+@import "bootstrap/popover";
+@import "bootstrap/carousel";
+@import "bootstrap/utilities";
+@import "bootstrap/print";
+
+
+// Overrides
+@import "bootsrtap_extras/grid";
+@import "bootsrtap_extras/tables";
+@import "bootsrtap_extras/buttons";
+@import "bootsrtap_extras/dropdown";
+@import "bootsrtap_extras/custom-forms"; // TODO: Got this error with the original bootstrap/custom-forms. `(en: "Choose file...") isn't a valid CSS value.`. Remove and uncomment once updating from 4.0.0!
+@import "bootsrtap_extras/card";
+@import "bootsrtap_extras/pagination";
+
+// Extras
+@import "bootsrtap_extras/variables-custom";
+@import "bootsrtap_extras/utilities";

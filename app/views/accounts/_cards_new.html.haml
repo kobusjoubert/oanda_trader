@@ -1,0 +1,17 @@
+.row
+  .col-12.col-lg-6.col-xl-4.px-0.px-sm-3
+    .card.mb-3.border-default.text-muted
+      .card-body
+        %h4.display-4.card-title.text-truncate
+          = t('alias')
+        %p.card-text
+          = "$ #{t('balance')}"
+          %br
+          = t('account_id')
+          %br
+          %span.badge.badge-secondary
+            = t('practice_account')
+          %span.badge.badge-secondary
+            = t('live_account')
+        = link_to new_account_path, class: 'btn btn-outline-secondary' do
+          = t('add_account')

@@ -1,0 +1,17 @@
+<%- case trigger %>
+<%- when 'start', 'resume' %>
+  var button = $("#strategy-<%= @user_strategy.strategy.id %>-buttons [data-button=start]");
+  App.strategy.start("<%= @user_strategy.id %>");
+<%- when 'pause' %>
+  var button = $("#strategy-<%= @user_strategy.strategy.id %>-buttons [data-button=pause]");
+  App.strategy.pause("<%= @user_strategy.id %>");
+<%- when 'stop' %>
+  var button = $("#strategy-<%= @user_strategy.strategy.id %>-buttons [data-button=stop]");
+  App.strategy.stop("<%= @user_strategy.id %>");
+<%- end %>
+
+$(button.closest('form')).on('ajax:complete', function(data, status, xhr) {
+  setTimeout(function() {
+    $.rails.disableFormElement(button);
+  }, 13);
+});

@@ -1,0 +1,15 @@
+- content_for(:title, 'Resend Unlock Instructions')
+.row
+  .container
+    .row
+      .col-sm-12
+        = devise_error_messages!
+    .row
+      .col-sm-6.offset-sm-3
+        = form_for resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post, role: "form" } do |f|
+          .form-group
+            = f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email"
+          .form-group
+            = f.submit "Resend Unlock Instructions", class: "btn btn-outline-primary"
+          .form-group
+            = render "devise/shared/links"

@@ -1,0 +1,32 @@
+.row
+  - @accounts.each do |account|
+    .col-12.col-lg-6.col-xl-4.px-0.px-sm-3
+      .card.mb-3{ class: "border-#{account_active_class(account)}" }
+        .card-body
+          %h4.display-4.card-title.text-truncate
+            = account_alias(account)
+          %p.card-text.text-muted.text-truncate
+            = account_balance(account)
+            %br
+            = account_id(account)
+            %br
+            = account_practice_or_live_icon(account)
+            = account_max_concurrent_trades_icon(account)
+            %br
+          - if account.current
+            .btn.btn-primary
+              = t('active_account')
+          - else
+            = button_to account_path(account), remote: true, method: :put, title: t('trade_with_account'), class: 'btn btn-outline-primary d-inline-block', form_class: 'd-inline-block' do
+              = hidden_field :account, :current, value: 1
+              = t('trade_with_account')
+          .d-inline-block.float-right
+            .d-inline-block
+              = button_to account_path(account), method: :delete, class: 'btn btn-outline-danger', form_class: '', title: t('delete_account'), data: { disable_with: '<i class="fa fa-hourglass"></i>'.html_safe, confirm: t('modal.are_you_sure_delete_account') } do
+                .fa.fa-trash
+            .d-inline-block
+              = link_to edit_account_path(account), class: 'btn btn-outline-secondary', title: t('edit') do
+                .fa.fa-wrench
+            .d-inline-block
+              = link_to refresh_account_path(account), method: :patch, class: 'btn btn-outline-secondary', title: t('refresh') do
+                .fa.fa-refresh

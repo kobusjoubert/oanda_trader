@@ -1,0 +1,1 @@
+json.partial! "user_strategies/user_strategy", user_strategy: @user_strategy

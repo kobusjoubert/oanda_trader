@@ -1,0 +1,179 @@
+- content_for(:head) do
+  = javascript_include_tag 'trading_view_chart'
+#trading-view-chart
+:javascript
+  function plotBacktestResults(widget) {
+    var resolutionMapping = {
+      '1': 'M1',
+      '2': 'M2',
+      '3': 'M3',
+      '4': 'M4',
+      '5': 'M5',
+      '10': 'M10',
+      '15': 'M15',
+      '30': 'M30',
+      '60': 'H1',
+      '120': 'H2',
+      '180': 'H3',
+      '240': 'H4',
+      '360': 'H6',
+      '480': 'H8',
+      '720': 'H12',
+      '1D': 'D',
+      '1W': 'W',
+      '1M': 'M'
+    };
+    var symbol     = widget.chart().symbolExt();
+    var resolution = widget.chart().resolution();
+    var file       = '/backtest/' + symbol.symbol + '_' + resolutionMapping[resolution] + '_TV.txt?ver=' + (new Date() / 1)
+
+    $.get(file, function(data) {
+      var lines = data.split('\n');
+
+      for (i = 0; i < lines.length; i++) {
+        if (lines[i] == '') { continue; }
+        var line      = lines[i].split(';');
+        var text      = line[0];
+        var shape     = line[1];
+        var points    = JSON.parse(line[2]);
+        var options   = { shape: shape }
+
+        if (text)
+          options['text'] = text;
+        if (line[3])
+          var overrides = JSON.parse(line[3]);
+        if (overrides && !$.isEmptyObject(overrides))
+          options['overrides'] = overrides;
+        if (line[4])
+          options['zOrder'] = line[4];
+
+        widget.chart().createMultipointShape(points, options);
+      }
+    }, 'text')
+    .fail(function() {
+      alert('Missing file: oanda_trader/public' + file + '. This file is needed to plot the backtest results.');
+    });
+  };
+
+  function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  };
+
+  function initOnReady() {
+    var updateFrequency = getParameterByName('update_frequency') || 'undefined';
+    var udfDatafeed = new Datafeeds.UDFCompatibleDatafeed("#{Rails.configuration.trading_view['udf_data_feed_url']}", updateFrequency);
+
+    var widget = new TradingView.widget({
+      debug: true,
+      fullscreen: true,
+      symbol: 'EUR_USD',
+      timezone: 'UTC', // 'Africa/Johannesburg',
+      interval: '60',
+      // timeframe: '1M',
+      allow_symbol_change: true,
+      container_id: 'trading-view-chart',
+      library_path: '/assets/charting_library/',
+      datafeed: udfDatafeed,
+      locale: getParameterByName('lang') || 'en',
+      charts_storage_url: 'http://saveload.tradingview.com',
+      charts_storage_api_version: '1.1',
+      client_id: 'tradingview.com',
+      user_id: 'public_user_id',
+      enabled_features: ['charting_library_debug_mode', 'go_to_date', 'high_density_bars', 'high_density_bars'],
+      disabled_features: ['header_screenshot', 'header_saveload', 'create_volume_indicator_by_default'],
+    });
+
+    widget.headerReady().then(function() {
+      // Backtest Button.
+      var button_backtest = widget.createButton({ align: 'right' });
+      button_backtest.setAttribute('title', 'Plot Backtest Results');
+      button_backtest.textContent = 'Backtest';
+      button_backtest.addEventListener('click', function() {
+        widget.chart().removeAllShapes();
+        plotBacktestResults(widget);
+      });
+
+      // Update Freqency Resume Pause Button.
+      var button_update = widget.createButton({ align: 'right' });
+
+      if (updateFrequency == 'undefined') {
+        button_update.setAttribute('title', 'Resume Candle Update Frequency');
+        button_update.textContent = 'Resume';
+      } else {
+        button_update.setAttribute('title', 'Pause Candle Update Frequency');
+        button_update.textContent = 'Pause';
+      }
+
+      button_update.addEventListener('click', function() {
+        if (updateFrequency == 'undefined') {
+          window.location.href = '/charts?update_frequency=1000'
+        } else {
+          window.location.href = '/charts?update_frequency=undefined'
+        }
+      });
+    });
+
+    widget.onChartReady(function() {
+      var chart = $('#trading-view-chart iframe').contents();
+
+      // var currentRange = widget.chart().getVisibleRange();
+      // var currentFromDate = new Date(currentRange['from'] * 1000);
+      // var currentToDate = new Date(currentRange['to'] * 1000 || (currentRange['from'] + 86400) * 1000);
+      //
+      // var currentFromYear = currentFromDate.getUTCFullYear();
+      // var currentFromMonth = currentFromDate.getUTCMonth() + 1;
+      // var currentFromDay = currentFromDate.getUTCDate();
+      // var currentToYear = currentToDate.getUTCFullYear();
+      // var currentToMonth = currentToDate.getUTCMonth() + 1;
+      // var currentToDay = currentToDate.getUTCDate();
+      // var currentFrom = currentFromYear + '-' + (currentFromMonth.toString().length > 1 ? currentFromMonth : '0' + currentFromMonth) + '-' + (currentFromDay.toString().length > 1 ? currentFromDay : '0' + currentFromDay);
+      // var currentTo = currentToYear + '-' + (currentToMonth.toString().length > 1 ? currentToMonth : '0' + currentToMonth) + '-' + (currentToDay.toString().length > 1 ? currentToDay : '0' + currentToDay);
+      //
+      // widget.createButton({ align: 'right' })
+      //   .attr('title', 'From Date')
+      //   .attr('class', '')
+      //   .append($('<input type="text" id="chart-from-date" class="symbol-edit" maxlength="10" value="' + currentFrom + '" placeholder="' + currentFrom + '" style="width: 100px;" />'));
+      //
+      // widget.createButton({ align: 'right' })
+      //   .attr('title', 'To Date')
+      //   .attr('class', '')
+      //   .append($('<input type="text" id="chart-to-date" class="symbol-edit" maxlength="10" value="' + currentTo + '" placeholder="' + currentTo + '" style="width: 100px;" />'));
+      //
+      // widget.createButton({ align: 'right' })
+      //   .append($('<span class="fa fa-search">Go</span>'))
+      //   .on('click', function(e) {
+      //     var fromInput = chart.find('#chart-from-date');
+      //     var toInput = chart.find('#chart-to-date');
+      //     var from = new Date(fromInput.val()).valueOf() / 1000;
+      //     var to = new Date(toInput.val()).valueOf() / 1000;
+      //
+      //     widget.chart().setVisibleRange({
+      //       from: from,
+      //       to: to
+      //     }, function() {
+      //       // Do something if you want.
+      //     });
+      //   });
+      //
+      // if (updateFrequency == 'undefined') {
+      //   widget.createButton({ align: 'right' })
+      //     .attr('title', 'Resume Candle Update Frequency')
+      //     .append($('<span class="fa fa-play">Resume</span>'))
+      //     .on('click', function(e) {
+      //       window.location.href = '/charts?update_frequency=10000'
+      //     });
+      // } else {
+      //   widget.createButton({ align: 'right' })
+      //     .attr('title', 'Pause Candle Update Frequency')
+      //     .append($('<span class="fa fa-pause">Pause</span>'))
+      //     .on('click', function(e) {
+      //       window.location.href = '/charts?update_frequency=undefined'
+      //     });
+      // }
+    });
+  };
+
+  window.addEventListener('DOMContentLoaded', initOnReady, false);

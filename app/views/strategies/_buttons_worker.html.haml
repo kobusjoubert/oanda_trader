@@ -1,0 +1,19 @@
+- if user_strategy
+  - if user_strategy.started?
+    .d-inline-block
+      = button_to user_strategy_path(user_strategy), params: { user_strategy: { trigger: :pause } }, method: :patch, remote: true, class: 'btn btn-outline-primary', form_class: '', title: t('pause'), data: { button: 'pause', disable_with: '<i class="fa fa-hourglass"></i>'.html_safe } do
+        .fa.fa-pause
+    .d-inline-block
+      = button_to user_strategy_path(user_strategy), params: { user_strategy: { trigger: :stop } }, method: :patch, remote: true, class: 'btn btn-outline-danger', form_class: '', title: t('stop'), data: { button: 'stop', disable_with: '<i class="fa fa-hourglass"></i>'.html_safe, confirm: t('modal.are_you_sure') } do
+        .fa.fa-stop
+  - if user_strategy.paused? || user_strategy.halted? || user_strategy.temporary_halted?
+    .d-inline-block
+      = button_to user_strategy_path(user_strategy), params: { user_strategy: { trigger: :resume } }, method: :patch, remote: true, class: 'btn btn-outline-primary', form_class: '', title: t('start'), data: { button: 'start', disable_with: '<i class="fa fa-hourglass"></i>'.html_safe } do
+        .fa.fa-play
+    .d-inline-block
+      = button_to user_strategy_path(user_strategy), params: { user_strategy: { trigger: :stop } }, method: :patch, remote: true, class: 'btn btn-outline-danger', form_class: '', title: t('stop'), data: { button: 'stop', disable_with: '<i class="fa fa-hourglass"></i>'.html_safe, confirm: t('modal.are_you_sure') } do
+        .fa.fa-stop
+  - if user_strategy.stopped?
+    .d-inline-block
+      = button_to user_strategy_path(user_strategy), params: { user_strategy: { trigger: :start } }, method: :patch, remote: true, class: 'btn btn-outline-primary', form_class: '', title: t('start'), data: { button: 'start', disable_with: '<i class="fa fa-hourglass"></i>'.html_safe } do
+        .fa.fa-play

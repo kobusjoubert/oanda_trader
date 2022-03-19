@@ -1,0 +1,10 @@
+development:
+  udf_data_feed_url: 'http://localhost:3000/charts'
+backtest:
+  udf_data_feed_url: 'http://localhost:3001/charts'
+test:
+  udf_data_feed_url: 'http://localhost:3000/charts'
+production:
+  udf_data_feed_url: 'https://oandatrader.herokuapp.com/charts'
+staging:
+  udf_data_feed_url: 'https://oandatrader-staging.herokuapp.com/charts'

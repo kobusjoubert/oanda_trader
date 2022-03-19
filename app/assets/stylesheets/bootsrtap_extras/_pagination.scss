@@ -1,0 +1,5 @@
+.page-link {
+  @include hover-focus {
+    text-decoration: none;
+  }
+}

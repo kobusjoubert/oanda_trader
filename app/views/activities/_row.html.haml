@@ -1,0 +1,10 @@
+%tr{ class: "table-#{activity.level}" }
+  %td.text-truncate
+    = activity.comment
+  - unless local_assigns[:card] == true
+    %td.text-truncate
+      .float-right
+        = activity.created_at.to_s(:time_long)
+  %td.text-truncate
+    .float-right
+      = activity.published_at.to_s(:time_long)

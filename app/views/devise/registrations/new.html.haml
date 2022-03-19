@@ -1,0 +1,21 @@
+- content_for(:title, 'Sign Up')
+.row
+  .container
+    .row
+      .col-sm-12
+        = devise_error_messages!
+    .row
+      .col-sm-6.offset-sm-3
+        = form_for resource, as: resource_name, url: registration_path(resource_name), html: { role: "form" } do |f|
+          .form-group
+            = f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email"
+          .form-group
+            = f.text_field :display_name, class: "form-control", placeholder: "Display Name"
+          .form-group
+            = f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password"
+          .form-group
+            = f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Confirm Password"
+          .form-group
+            = f.submit "Sign Up", class: "btn btn-outline-primary"
+          .form-group
+            = render "devise/shared/links"

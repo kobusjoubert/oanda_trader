@@ -1,0 +1,64 @@
+= form_for @user_strategy, html: { role: 'form' } do |f|
+  = f.hidden_field :strategy_id, value: params[:strategy_id]
+  .row.form-group
+    .col-8.offset-4
+      .custom-control.custom-checkbox
+        = f.check_box :favourite, class: 'custom-control-input'
+        = f.label :favourite, class: 'custom-control-label' do
+          %span.custom-control-indicator
+          %span.custom-control-description
+            = t('favourite')
+  .row.form-group
+    = label :chart_interval, t('chart_interval'), class: 'col-4 col-form-label'
+    .col-8
+      .input-group
+        = f.select :chart_interval, options_for_select(CANDLESTICK_GRANULARITY_IN_WORDS.map{ |key, value| [value, key] }, @user_strategy.chart_interval), {}, { class: 'form-control' }
+  .row.form-group
+    = label :margin, t('margin'), class: 'col-4 col-form-label'
+    .col-8
+      .input-group
+        = f.text_field :margin, autofocus: true, type: 'number', min: 0.0001, max: 100, step: 'any', class: 'form-control', aria: { describedby: 'margin-help-block' }
+        .input-group-append
+          %span.input-group-text
+            = '%'
+      %small.form-text.text-muted#margin-help-block
+        = t('descriptions.margin_help_block')
+  .row.form-group
+    = label :units, t('units'), class: 'col-4 col-form-label'
+    .col-8
+      .input-group
+        = f.text_field :units, type: 'number', class: 'form-control'
+  .row.form-group
+    = label :consecutive_losses_allowed, t('consecutive_losses_allowed'), class: 'col-4 col-form-label'
+    .col-8
+      .input-group
+        = f.text_field :consecutive_losses_allowed, type: 'number', min: 1, class: 'form-control'
+  / .row.form-group
+  /   = label :chart_interval, t('chart_interval'), class: 'col-4 col-form-label'
+  /   .col-8
+  /     .input-group
+  /       = f.text_field :chart_interval, autofocus: true, type: 'number', class: 'form-control', aria: { describedby: 'chart-interval-addon' }
+  /       %span#chart-interval-addon.input-group-addon
+  /         = t('seconds')
+  / .row.form-group.has-success
+  /   = label :take_profit_at, t('take_profit_at'), class: 'col-4 col-form-label'
+  /   .col-8
+  /     .input-group
+  /       = f.text_field :take_profit_at, type: 'number', class: 'form-control'
+  / .row.form-group.has-danger
+  /   = label :stop_loss_at, t('stop_loss_at'), class: 'col-4 col-form-label'
+  /   .col-8
+  /     .input-group
+  /       = f.text_field :stop_loss_at, type: 'number', class: 'form-control'
+  / .row.form-group.has-warning
+  /   = label :margin, t('margin'), class: 'col-4 col-form-label'
+  /   .col-8
+  /     .input-group
+  /       = f.text_field :margin, autofocus: true, type: 'number', class: 'form-control'
+  / .row.form-group
+  /   = label :cut_off_time, t('cut_off_time'), class: 'col-4 col-form-label'
+  /   .col-8
+  /     .input-group
+  /       = f.time_select :cut_off_time, {}, { class: 'form-control d-inline-block w-auto float-none', type: 'datetime-local' }
+  .form-group
+    = f.submit t('update'), class: 'btn btn-outline-primary'

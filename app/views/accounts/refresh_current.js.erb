@@ -1,0 +1,4 @@
+$('#current-balance').html("$ <%= current_user.current_account.balance %>");
+$('#margin-clouseout-percent').html("<%= escape_javascript(account_margin_clouseout_percent_icon(current_user.current_account)) %>").promise().then(function() {
+  $('#margin-clouseout-percent .progress-bar').tooltip();
+});

@@ -1,0 +1,16 @@
+- @accounts.each do |account|
+  %tr{ class: "table-#{account_active_class(account)}" }
+    %td.hidden-down
+      = account.trade_account_id
+    %td
+      = account.alias
+    %td.hidden-sm-down
+      = account.balance
+    %td
+      = account_practice_or_live_icon(account)
+    %td
+      - unless account.current
+        = button_to account_path(account), remote: true, method: :put, title: t('trade_with_account'), class: 'btn btn-sm btn-primary' do
+          = hidden_field :account, :current, value: 1
+          .fa.fa-play
+    %td

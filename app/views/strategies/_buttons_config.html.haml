@@ -1,0 +1,12 @@
+- unless user_strategy
+  .d-inline-block
+    = link_to new_strategy_user_strategy_path(strategy), title: t('start'), class: 'btn btn-outline-primary' do
+      .fa.fa-play
+.d-inline-block.float-right
+  - if user_strategy
+    .d-inline-block
+      = button_to delete_user_strategy_activities_path(user_strategy), method: :get, remote: true, class: 'btn btn-outline-danger', form_class: '', title: t('delete_logs'), data: { disable_with: '<i class="fa fa-hourglass"></i>'.html_safe } do
+        .fa.fa-fire
+  .d-inline-block
+    = link_to strategy_config_path(strategy), class: 'btn btn-outline-secondary', title: t('edit') do
+      .fa.fa-wrench
