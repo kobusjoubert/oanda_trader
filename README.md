@@ -1,7 +1,5 @@
 # OandaTrader
 
-## Purpose
-
 This is a UI to be able to interact with the user account and strategies.
 
 ![oanda_trader_ui](https://user-images.githubusercontent.com/3071529/158765544-0003de61-0f78-4426-8298-3cbc9857c03a.jpg)
