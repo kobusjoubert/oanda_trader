@@ -1,4 +1,4 @@
-# README
+# OandaTrader
 
 ## Purpose
 
