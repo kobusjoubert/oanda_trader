@@ -65,7 +65,7 @@ gem 'redis', '~> 3.3'
 
 group :development, :backtest, :test do
   gem 'byebug', platform: :mri
-  gem 'rspec-rails', '~> 6.0'
+  gem 'rspec-rails', '~> 8.0'
   gem 'shoulda-matchers', '~> 5.0'
 end
 
