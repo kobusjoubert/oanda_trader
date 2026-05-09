@@ -9,10 +9,20 @@
 // Navigation
 //
 header.navbar {
+  align-items: center;
+  min-height: $header-height;
+
   .dropdown-toggle:after {
     border: none !important;
     content: "" !important;
   }
+
+  img[alt] {
+    height: 40px;
+    width: 40px;
+    display: block;
+  }
+
   &:after {
     content: "" !important;
     position: absolute;
