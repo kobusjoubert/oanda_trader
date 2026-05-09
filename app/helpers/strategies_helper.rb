@@ -38,7 +38,7 @@ module StrategiesHelper
 
   def strategy_exit_hours(strategy)
     return nil unless strategy.exit_friday_at
-    content_tag(:span, "#{strategy.exit_friday_at.to_s(:time)}", class: "badge badge-warning", title: t('exit_friday_at'), data: { toggle: 'tooltip' })
+    content_tag(:span, "#{strategy.exit_friday_at.to_fs(:time)}", class: "badge badge-warning", title: t('exit_friday_at'), data: { toggle: 'tooltip' })
   end
 
   def strategy_consecutive_losses_allowed(strategy)

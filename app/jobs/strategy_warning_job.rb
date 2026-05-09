@@ -21,7 +21,7 @@ class StrategyWarningJob < ApplicationJob
     account = Account.find_by!(trade_account_id: data[:account], practice: data[:practice])
 
     message_data = {
-      message: "#{Time.zone.now.to_s(:short)} #{data[:message]}",
+      message: "#{Time.zone.now.to_fs(:short)} #{data[:message]}",
       level: data[:level] || :danger,
       replace: data[:replace] || false
     }

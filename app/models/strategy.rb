@@ -4,10 +4,10 @@ class Strategy < ApplicationRecord
   serialize :default_config, Hash
 
   def trading_hours
-    "#{trade_from.try(:to_s, :time)} - #{trade_to.try(:to_s, :time)}"
+    "#{trade_from.try(:to_fs, :time)} - #{trade_to.try(:to_fs, :time)}"
   end
 
   def market_hours
-    "#{market_open_at.try(:to_s, :time)} - #{market_close_at.try(:to_s, :time)}"
+    "#{market_open_at.try(:to_fs, :time)} - #{market_close_at.try(:to_fs, :time)}"
   end
 end

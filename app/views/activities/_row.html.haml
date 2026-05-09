@@ -4,7 +4,7 @@
   - unless local_assigns[:card] == true
     %td.text-truncate
       .float-right
-        = activity.created_at.to_s(:time_long)
+        = activity.created_at.to_fs(:time_long)
   %td.text-truncate
     .float-right
-      = activity.published_at.to_s(:time_long)
+      = activity.published_at.to_fs(:time_long)

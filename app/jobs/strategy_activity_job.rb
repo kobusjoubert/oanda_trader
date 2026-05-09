@@ -44,8 +44,8 @@ class StrategyActivityJob < ApplicationJob
       comment:          activity.comment,
       level:            data[:level],
       status:           data[:status],
-      created_at:       activity.created_at.to_s(:time_long),
-      published_at:     activity.published_at.to_s(:time_long)
+      created_at:       activity.created_at.to_fs(:time_long),
+      published_at:     activity.published_at.to_fs(:time_long)
     }
 
     ActionCable.server.broadcast("user_#{account.user.id}_activities", channel_data)
