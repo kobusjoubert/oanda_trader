@@ -5,15 +5,15 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.4.5'
+ruby '3.1.2'
 
 gem 'dotenv-rails', groups: [:development, :backtest, :test], require: 'dotenv/rails-now'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
-gem 'pg', '~> 0.19'
-gem 'bunny', '~> 2.9'
-gem 'sneakers', '~> 2.7'
+gem 'pg', '~> 1.6'
+gem 'bunny', '~> 2.24'
+gem 'sneakers', '~> 2.12'
 gem 'puma', '~> 3.6'
 gem 'rack-timeout', '~> 0.4'
 gem 'groupdate', '~> 3.1'
@@ -45,13 +45,13 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
 
-gem 'attr_encrypted', '~> 3.1'
+gem 'attr_encrypted', '~> 4.1'
 gem 'devise', '~> 4.2'
 gem 'devise_invitable', '~> 1.7'
 # gem 'cancancan', '~> 1.15'
 gem 'http-exceptions_parser', '~> 0.1'
 gem 'oanda_api_v20', '~> 2.1'
-gem 'oanda_service_api', '0.1.11', git: 'https://github.com/kobusjoubert/oanda_service_api.git'
+gem 'oanda_service_api', '2.0.2', git: 'https://github.com/kobusjoubert/oanda_service_api.git'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
@@ -81,5 +81,5 @@ group :development do
 end
 
 group :backtest do
-  gem 'oanda_api_v20_backtest', '2.0.46', git: 'git@github.com:kobusjoubert/oanda_api_v20_backtest.git'
+  gem 'oanda_api_v20_backtest', '2.0.50', git: 'git@github.com:kobusjoubert/oanda_api_v20_backtest.git'
 end
