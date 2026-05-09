@@ -21,6 +21,10 @@ module OandaTrader
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
+    # Opt in to Rails 8.1's to_time timezone-preservation behavior. Silences the
+    # deprecation warning shipped in 8.0; harmless on 8.0 and forward-compatible.
+    config.active_support.to_time_preserves_timezone = :zone
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
