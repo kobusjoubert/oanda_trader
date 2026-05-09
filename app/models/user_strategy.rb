@@ -9,7 +9,7 @@ class UserStrategy < ApplicationRecord
 
   enum state: [:stopped, :started, :paused, :halted, :temporary_halted]
 
-  serialize :config, Hash
+  serialize :config, type: Hash
 
   scope :favourite, -> { where(favourite: true) }
   scope :active,    -> { where.not(state: :stopped) }

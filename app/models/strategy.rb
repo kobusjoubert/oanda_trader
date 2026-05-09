@@ -1,7 +1,7 @@
 class Strategy < ApplicationRecord
   has_many :user_strategies, dependent: :destroy
 
-  serialize :default_config, Hash
+  serialize :default_config, type: Hash
 
   def trading_hours
     "#{trade_from.try(:to_fs, :time)} - #{trade_to.try(:to_fs, :time)}"
