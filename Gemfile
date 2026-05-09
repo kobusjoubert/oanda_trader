@@ -5,12 +5,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '3.1.2'
+ruby '3.4.4'
 
 gem 'dotenv-rails', groups: [:development, :backtest, :test], require: 'dotenv/load'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 7.2.0'
+gem 'rails', '~> 8.0.0'
 gem 'pg', '~> 1.6'
 gem 'bunny', '~> 2.24'
 gem 'sneakers', '~> 2.12'
