@@ -38,7 +38,6 @@ gem 'chartkick', '~> 2.2'
 #
 # gem 'tv_chart_rails_private', '2.0.4', git: 'https://github.com/kobusjoubert/tv_chart_rails_private.git', branch: 'unstable'
 
-gem 'gravatar_image_tag', '~> 1.2'
 gem 'non-stupid-digest-assets', '~> 1.0'
 
 source 'https://rails-assets.org' do
@@ -66,7 +65,7 @@ gem 'redis', '~> 3.3'
 
 group :development, :backtest, :test do
   gem 'byebug', platform: :mri
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails', '~> 6.0'
 end
 
 group :development, :backtest do
