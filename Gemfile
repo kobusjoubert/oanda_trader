@@ -59,7 +59,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # gem 'therubyracer', platforms: :ruby
 
 # Use Redis adapter to run Action Cable in production
-gem 'redis', '~> 3.3'
+gem 'redis', '~> 5.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -81,5 +81,9 @@ group :development do
 end
 
 group :backtest do
-  gem 'oanda_api_v20_backtest', '2.0.50', git: 'git@github.com:kobusjoubert/oanda_api_v20_backtest.git'
+  # NOTE: oanda_api_v20_backtest 2.0.50 pins redis ~> 3.3, which is incompatible
+  # with Action Cable's redis pub/sub adapter on Rails 8 (needs redis >= 4).
+  # Disabled for now — needs a release of oanda_api_v20_backtest with the
+  # constraint relaxed before backtest env can be re-enabled.
+  # gem 'oanda_api_v20_backtest', '2.0.50', git: 'git@github.com:kobusjoubert/oanda_api_v20_backtest.git'
 end

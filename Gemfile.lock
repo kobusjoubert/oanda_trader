@@ -1,11 +1,4 @@
 GIT
-  remote: git@github.com:kobusjoubert/oanda_api_v20_backtest.git
-  revision: 0b9c210fa24f1b9c6ab91274dc54e056128fa33e
-  specs:
-    oanda_api_v20_backtest (2.0.50)
-      redis (~> 3.3)
-
-GIT
   remote: https://github.com/kobusjoubert/oanda_service_api.git
   revision: 1649f308add6513bf117b91e693e37accffadab9
   specs:
@@ -290,7 +283,10 @@ GEM
       erb
       psych (>= 4.0.0)
       tsort
-    redis (3.3.5)
+    redis (5.4.1)
+      redis-client (>= 0.22.0)
+    redis-client (0.29.0)
+      connection_pool
     reline (0.6.3)
       io-console (~> 0.5)
     responders (3.1.1)
@@ -403,14 +399,13 @@ DEPENDENCIES
   listen (~> 3.1)
   non-stupid-digest-assets (~> 1.0)
   oanda_api_v20 (~> 2.1)
-  oanda_api_v20_backtest (= 2.0.50)!
   oanda_service_api (= 2.0.2)!
   pg (~> 1.6)
   puma (~> 3.6)
   rack-timeout (~> 0.4)
   rails (~> 8.0.0)
   rails-assets-tether (>= 1.1.0)!
-  redis (~> 3.3)
+  redis (~> 5.0)
   rspec-rails (~> 8.0)
   sass-rails (~> 5.0)
   shoulda-matchers (~> 5.0)
