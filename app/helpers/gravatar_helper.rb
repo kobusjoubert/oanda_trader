@@ -6,6 +6,6 @@ module GravatarHelper
 
   def gravatar_image_tag(email, **options)
     url = gravatar_image_url(email, size: (options.delete(:size) || 80))
-    image_tag(url, **options)
+    image_tag(url, skip_pipeline: true, **options)
   end
 end
