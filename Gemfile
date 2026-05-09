@@ -81,9 +81,5 @@ group :development do
 end
 
 group :backtest do
-  # NOTE: oanda_api_v20_backtest 2.0.50 pins redis ~> 3.3, which is incompatible
-  # with Action Cable's redis pub/sub adapter on Rails 8 (needs redis >= 4).
-  # Disabled for now — needs a release of oanda_api_v20_backtest with the
-  # constraint relaxed before backtest env can be re-enabled.
-  # gem 'oanda_api_v20_backtest', '2.0.50', git: 'git@github.com:kobusjoubert/oanda_api_v20_backtest.git'
+  gem 'oanda_api_v20_backtest', '2.1.0', git: 'git@github.com:kobusjoubert/oanda_api_v20_backtest.git'
 end

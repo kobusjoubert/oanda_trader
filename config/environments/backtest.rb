@@ -1,6 +1,11 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # Rails 7.2+ requires secret_key_base for any non-development/test environment.
+  # Read it from config/secrets.yml since this app pre-dates the credentials.yml.enc
+  # convention.
+  config.secret_key_base = Rails.application.config_for(:secrets).secret_key_base
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.

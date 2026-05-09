@@ -22,7 +22,7 @@ class StrategyUpdateJob < ApplicationJob
     strategy      = Strategy.find_by!(worker_name: data[:strategy])
     user_strategy = UserStrategy.where(account: account, strategy: strategy).order(id: :desc).take!
 
-    if user_strategy.update_attributes(state: data[:status])
+    if user_strategy.update(state: data[:status])
       channel_data = {
         strategy_id:  strategy.id,
         buttons_html: render_buttons(strategy, user_strategy),

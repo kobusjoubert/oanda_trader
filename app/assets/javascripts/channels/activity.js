@@ -32,7 +32,7 @@ App.activity = App.cable.subscriptions.create('ActivityChannel', {
   },
   playSound: function(data) {
     // Skip when backtesting.
-    if (App.cable.connection.webSocket.URL.includes('3001'))
+    if (App.cable.connection.webSocket.url.includes('3001'))
       return;
     if (data.level == 'secondary')
       return $('.sound-button-press')[0].play();
