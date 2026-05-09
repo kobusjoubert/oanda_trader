@@ -10,7 +10,7 @@ ruby '3.1.2'
 gem 'dotenv-rails', groups: [:development, :backtest, :test], require: 'dotenv/load'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 7.1.0'
+gem 'rails', '~> 7.2.0'
 gem 'pg', '~> 1.6'
 gem 'bunny', '~> 2.24'
 gem 'sneakers', '~> 2.12'

@@ -7,7 +7,7 @@ class UserStrategy < ApplicationRecord
            :exit_friday_at, :default_config, :trading_hours, :market_hours,
            to: :strategy
 
-  enum state: [:stopped, :started, :paused, :halted, :temporary_halted]
+  enum :state, [:stopped, :started, :paused, :halted, :temporary_halted]
 
   serialize :config, type: Hash
 
