@@ -14,8 +14,9 @@ class Account < ApplicationRecord
 
   scope :current, -> { where(current: true) }
 
-  def initialize(options = {})
-    super
+  def initialize(options = nil)
+    options ||= {}
+    super(options)
 
     if options[:access_token].present?
       practice   = options[:practice].to_i == 1 ? true : false
