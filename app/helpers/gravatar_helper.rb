@@ -5,7 +5,13 @@ module GravatarHelper
   end
 
   def gravatar_image_tag(email, **options)
-    url = gravatar_image_url(email, size: (options.delete(:size) || 80))
-    image_tag(url, skip_pipeline: true, **options)
+    size = options.delete(:size) || 80
+    url = gravatar_image_url(email, size: size)
+
+    # Build HTML attributes
+    html_options = { src: url, alt: email }
+    html_options.merge!(options)
+
+    tag.img(**html_options)
   end
 end
