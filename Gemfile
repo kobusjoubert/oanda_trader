@@ -7,10 +7,10 @@ end
 
 ruby '3.1.2'
 
-gem 'dotenv-rails', groups: [:development, :backtest, :test], require: 'dotenv/rails-now'
+gem 'dotenv-rails', groups: [:development, :backtest, :test], require: 'dotenv/load'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.4'
+gem 'rails', '~> 6.1.0'
 gem 'pg', '~> 1.6'
 gem 'bunny', '~> 2.24'
 gem 'sneakers', '~> 2.12'
@@ -19,7 +19,7 @@ gem 'rack-timeout', '~> 0.4'
 gem 'groupdate', '~> 3.1'
 
 gem 'sass-rails', '~> 5.0'
-gem 'haml-rails', '~> 1.0'
+gem 'haml-rails', '~> 2.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
@@ -47,7 +47,7 @@ end
 
 gem 'attr_encrypted', '~> 4.1'
 gem 'devise', '~> 4.2'
-gem 'devise_invitable', '~> 1.7'
+gem 'devise_invitable', '~> 2.0'
 # gem 'cancancan', '~> 1.15'
 gem 'http-exceptions_parser', '~> 0.1'
 gem 'oanda_api_v20', '~> 2.1'
