@@ -7,11 +7,18 @@ module GravatarHelper
   def gravatar_image_tag(email, **options)
     size = options.delete(:size) || 80
     url = gravatar_image_url(email, size: size)
+    css_classes = options.delete(:class)
 
-    # Build HTML attributes
-    html_options = { src: url, alt: email }
-    html_options.merge!(options)
+    # Build img tag HTML with proper attribute handling
+    img_attrs = ["src=\"#{url}\""]
+    img_attrs << "alt=\"#{ERB::Util.h(email)}\""
+    img_attrs << "class=\"#{ERB::Util.h(css_classes)}\"" if css_classes
 
-    tag.img(**html_options)
+    # Add any remaining options as properly escaped attributes
+    options.each do |key, value|
+      img_attrs << "#{key}=\"#{ERB::Util.h(value)}\""
+    end
+
+    raw("<img #{img_attrs.join(' ')}>")
   end
 end
