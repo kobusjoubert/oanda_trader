@@ -52,7 +52,9 @@ end
 #
 on_worker_boot do
   ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
-  $redis.client.reconnect
+  # On Redis 5+, the .client method takes args. Closing the connection here
+  # is enough — it will reconnect lazily on the next operation in the worker.
+  $redis&.close
 end
 
 # Allow puma to be restarted by `rails restart` command.

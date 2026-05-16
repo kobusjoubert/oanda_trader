@@ -9,10 +9,37 @@
 // Navigation
 //
 header.navbar {
+  align-items: center;
+  min-height: $header-height;
+
   .dropdown-toggle:after {
     border: none !important;
     content: "" !important;
   }
+
+  .nav-item {
+    padding: 0;
+    margin: 0;
+    border: none;
+  }
+
+  .nav-link {
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  img[alt] {
+    height: 40px;
+    width: 40px;
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
   &:after {
     content: "" !important;
     position: absolute;

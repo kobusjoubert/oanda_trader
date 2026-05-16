@@ -8,14 +8,15 @@ class Account < ApplicationRecord
   before_destroy :validate_no_active_strategies, prepend: true
   before_destroy :delete_attributes
 
-  serialize :summary, Hash
+  serialize :summary, type: Hash
 
-  attr_encrypted :access_token, key: Rails.application.secrets.access_token_key
+  attr_encrypted :access_token, key: SECRETS.access_token_key
 
   scope :current, -> { where(current: true) }
 
-  def initialize(options = {})
-    super
+  def initialize(options = nil)
+    options ||= {}
+    super(options)
 
     if options[:access_token].present?
       practice   = options[:practice].to_i == 1 ? true : false

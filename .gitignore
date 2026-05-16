@@ -21,3 +21,6 @@
 
 # Backtest
 /public/backtest/*
+
+# Agents
+.claude/settings.local.json*

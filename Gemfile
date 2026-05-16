@@ -5,21 +5,21 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.4.5'
+ruby '3.4.4'
 
-gem 'dotenv-rails', groups: [:development, :backtest, :test], require: 'dotenv/rails-now'
+gem 'dotenv-rails', groups: [:development, :backtest, :test], require: 'dotenv/load'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.4'
-gem 'pg', '~> 0.19'
-gem 'bunny', '~> 2.9'
-gem 'sneakers', '~> 2.7'
+gem 'rails', '~> 8.0.0'
+gem 'pg', '~> 1.6'
+gem 'bunny', '~> 2.24'
+gem 'sneakers', '~> 2.12'
 gem 'puma', '~> 3.6'
 gem 'rack-timeout', '~> 0.4'
 gem 'groupdate', '~> 3.1'
 
 gem 'sass-rails', '~> 5.0'
-gem 'haml-rails', '~> 1.0'
+gem 'haml-rails', '~> 2.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
@@ -38,20 +38,19 @@ gem 'chartkick', '~> 2.2'
 #
 # gem 'tv_chart_rails_private', '2.0.4', git: 'https://github.com/kobusjoubert/tv_chart_rails_private.git', branch: 'unstable'
 
-gem 'gravatar_image_tag', '~> 1.2'
 gem 'non-stupid-digest-assets', '~> 1.0'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
 
-gem 'attr_encrypted', '~> 3.1'
+gem 'attr_encrypted', '~> 4.1'
 gem 'devise', '~> 4.2'
-gem 'devise_invitable', '~> 1.7'
+gem 'devise_invitable', '~> 2.0'
 # gem 'cancancan', '~> 1.15'
 gem 'http-exceptions_parser', '~> 0.1'
 gem 'oanda_api_v20', '~> 2.1'
-gem 'oanda_service_api', '0.1.11', git: 'https://github.com/kobusjoubert/oanda_service_api.git'
+gem 'oanda_service_api', '2.0.2', git: 'https://github.com/kobusjoubert/oanda_service_api.git'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
@@ -60,13 +59,14 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # gem 'therubyracer', platforms: :ruby
 
 # Use Redis adapter to run Action Cable in production
-gem 'redis', '~> 3.3'
+gem 'redis', '~> 5.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
 group :development, :backtest, :test do
   gem 'byebug', platform: :mri
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails', '~> 8.0'
+  gem 'shoulda-matchers', '~> 5.0'
 end
 
 group :development, :backtest do
@@ -81,5 +81,5 @@ group :development do
 end
 
 group :backtest do
-  gem 'oanda_api_v20_backtest', '2.0.46', git: 'git@github.com:kobusjoubert/oanda_api_v20_backtest.git'
+  gem 'oanda_api_v20_backtest', '2.1.0', git: 'git@github.com:kobusjoubert/oanda_api_v20_backtest.git'
 end
